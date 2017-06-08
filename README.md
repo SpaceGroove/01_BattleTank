@@ -3,4 +3,3 @@ Open world head to head tank fight simple ai and terrain, advanced control syste
 
 01 Intro, Notes, and Assets
 02 Game Design Document
-03 Setting up a GitHub "Repo"
