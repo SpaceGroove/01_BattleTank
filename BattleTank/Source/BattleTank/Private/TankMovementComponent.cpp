@@ -5,8 +5,7 @@
 
 
 void UTankMovementComponent::Initialize(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet)
-{
-	
+{	
 	LeftTrack = LeftTrackToSet;
 	RightTrack = RightTrackToSet;
 }
@@ -15,17 +14,14 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 {
 	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(Throw);
-	RightTrack->SetThrottle(Throw);
-	// TODO prevent double speed due to dual control inputs
-	
+	RightTrack->SetThrottle(Throw);	
 }
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
 	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(Throw);
-	RightTrack->SetThrottle(-Throw);
-	// TODO prevent double speed due to dual control inputs
+	RightTrack->SetThrottle(-Throw);	
 }
 
 void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
@@ -40,5 +36,4 @@ void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, boo
 
 	IntendTurnRight(TurnThrow);
 	IntendMoveForward(ForwardThrow);
-	//UE_LOG(LogTemp, Warning, TEXT("%s moving at %s"), *TankName, *MoveVelocityString)
 }
