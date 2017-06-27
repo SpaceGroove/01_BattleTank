@@ -8,8 +8,6 @@
 #include "Tank.generated.h"
 
 class UTankBarrel;
-class UTankAimingComponent;
-class UTankTurret;
 class AProjectile;
 
 
@@ -22,21 +20,16 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
-protected:
 
-	UPROPERTY(BlueprintReadOnly)
-	UTankAimingComponent* TankAimingComponent = nullptr;
-
-	virtual void BeginPlay() override;
-public:	
-
-	void AimAt(FVector HitLocation);
 
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 		void Fire();
 
 private:
+
+	virtual void BeginPlay() override;
+
 	// TODO remove once firing is moved to aiming component
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 		float LaunchSpeed = 4000;
