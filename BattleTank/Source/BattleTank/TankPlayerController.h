@@ -25,6 +25,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+UFUNCTION()
+		void OnTankDeath();
+
 protected:
 
 
@@ -32,6 +35,9 @@ protected:
 		void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 
 private:
+	
+	virtual void SetPawn(APawn* InPawn) override;
+
 	
 
 	//start the tank moving the barrel so that the shot would hit where

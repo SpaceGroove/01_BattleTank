@@ -21,6 +21,7 @@ public:
 	AProjectile();
 	void LaunchProjectile(float Speed);
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -28,8 +29,11 @@ protected:
 private:
 	UProjectileMovementComponent* ProjectileMovement = nullptr;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Timers")
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		float DestroyDelay = 10.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+		float ProjectileDamage = 20.0f;
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UStaticMeshComponent* CollisionMesh = nullptr;

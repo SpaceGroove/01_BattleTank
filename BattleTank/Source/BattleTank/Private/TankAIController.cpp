@@ -3,10 +3,23 @@
 #include "Public/TankAIController.h"
 #include "Engine/World.h"
 #include "TankAimingComponent.h"
+#include "Tank.h" // so we can implement OnDeath
 
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void ATankAIController::SetPawn(APawn* InPawn)
+{
+	Super::SetPawn(InPawn);
+	if (InPawn)
+	{
+		auto PossessedTank = Cast<ATank>(InPawn);
+		if (!ensure(PossessedTank)) { return; }
+
+		PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankAIController::OnTankDeath);
+	}
 }
 
 void ATankAIController::Tick(float DeltaTime)
@@ -28,4 +41,10 @@ void ATankAIController::Tick(float DeltaTime)
 		{
 			AimingComponent->Fire(); // TODO limit fire rate
 		}
+}
+
+void ATankAIController::OnTankDeath()
+{
+	if (!ensure(GetPawn())) { return; }
+	GetPawn()->DetachFromControllerPendingDestroy();
 }
